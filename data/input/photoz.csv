@@ -1,0 +1,7 @@
+data_center,date,orchestrator,partitions,input_size_gb,partition_size_mb,"Workers
+(cpu X node)X process",cpu_per_worker,queue,duration_s,ram_gb,processor,available_disk_tb,output_directory
+SDumont,-,Parsl,200,7.8,39,(21X10)X1,1.0,cpu_small,3611,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/photoz-parsl/sandbox.001
+SDumont,-,Parsl,600,7.8,13,(24X5)X3,1.0,cpu_small,5461,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/photoz-parsl/sandbox.002
+SDumont,-,Parsl,500,7.8,15.6,(23X11)X1,1.0,cpu_small,8658,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/photoz-parsl/sandbox.003
+ICEX,-,Parsl,200,7.8,39,(21X1)X10,1.0,no_queue,38378,150,"Intel Xeon Skylake 5120, 14-cores, 2.2GHz",5.3,/lustre/t1/tmp/singulani/projects/pz_outputs/icex/run01.200part
+ICEX,06/01/2023,Parsl,200,7.8,39,(21X1)X10,1.0,no_queue,38396,150,"Intel Xeon Skylake 5120, 14-cores, 2.2GHz",5.3,/lustre/t1/tmp/singulani/projects/pz_outputs/icex/run01.200part

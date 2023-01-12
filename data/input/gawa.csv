@@ -1,0 +1,12 @@
+data_center,orchestrator,size_footprint_mb,input_size_gb,nside,tiles,workers,cpu_per_worker,queue,slices,duration_s,ram_gb,processor,available_disk_tb,output_directory
+SDumont,Parsl,14,0.622,32,136,136,1,mesca2,,572,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/gawa/output.007
+SDumont,Parsl,14,0.622,64,468,240,1,mesca2,,1198,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/gawa/output.006
+SDumont,Parsl,14,0.622,32,136,34(X4),1.4,sequana_cpu_dev,,927,384,2 x Intel Xeon Cascade Lake Gold 6252,5.3,/scratch/eubd/cristiano.singulani/gawa/output.009
+SDumont,Parsl,14,0.622,64,468,48(X4),1,sequana_cpu_dev,,1363,384,2 x Intel Xeon Cascade Lake Gold 6252,5.3,/scratch/eubd/cristiano.singulani/gawa/output.008
+SDumont,Parsl,14,0.622,32,136,10(X14),2,cpu_shared,,2063,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/gawa/output.010
+SDumont,Parsl,14,0.622,32,136,24 X 6 nodes,1,cpu_shared,,371,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/gawa/output.014
+SDumont,Parsl,14,0.622,32,136,24(X6),1,cpu_small,6,476,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/gawa/output.012
+SDumont,Dask,14,0.622,32,136,24(X6),1,cpu_small,6,639,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/gawa.dask/output.003
+SDumont,Parsl,14,0.622,32,136,24(X6),1,cpu_shared,6,388,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/gawa/output.013
+SDumont,Dask,14,0.622,32,136,24(X6),1,cpu_shared,6,529,64,"2 x CPU Intel Xeon E5-2695v2 Ivy Bridge, 2,4GHZ",5.3,/scratch/eubd/cristiano.singulani/gawa.dask/output.002
+ICEX,Parsl,14,0.622,32,136,24(X6),1,no_queue,6,319,150,"Intel Xeon Skylake 5120, 14-cores, 2.2GHz",5.3,/lustre/t1/tmp/singulani/projects/gawa/output.004
