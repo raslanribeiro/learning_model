@@ -1,0 +1,11 @@
+query_name,constraint,cte,case_when,inner_join,left_join,right_join,group_by,where,and,or,subquery,explode,create,read,update,delete
+silver_receita_federal_empresa,7,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_receita_federal_cnae,2,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_receita_federal_municipio,2,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_receita_federal_motivo,2,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_receita_federal_pais,2,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_receita_federal_natureza_juridica,2,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_receita_federal_qualificadores,2,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_receita_federal_simples,11,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_receita_federal_socios,11,0,1,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_receita_federal_estabelecimento,17,0,1,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE

@@ -1,0 +1,5 @@
+instance_type,vcpu,memory_ram_gb,instance_storage_type
+r5d.2xlarge,8,64,1 x 300 NVMe SSD
+r5d.xlarge,4,32,1 x 150 NVMe SSD
+i3.xlarge,31,31,1 x 950 NVMe SSD
+m5d.4xlarge,16,64,2 x 300 NVMe SSD
