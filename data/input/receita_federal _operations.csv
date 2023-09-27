@@ -9,3 +9,5 @@ silver_receita_federal_qualificadores,2,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FA
 silver_receita_federal_simples,11,0,0,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
 silver_receita_federal_socios,11,0,1,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
 silver_receita_federal_estabelecimento,17,0,1,0,0,0,0,1,1,0,2,0,TRUE,TRUE,FALSE,FALSE
+silver_data_solution_contacts,0,0,1,0,0,0,0,2,0,0,1,0,TRUE,TRUE,FALSE,FALSE
+silver_data_operation_contacts,1,0,1,0,0,0,0,2,0,0,1,0,TRUE,TRUE,FALSE,FALSE
