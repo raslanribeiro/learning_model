@@ -69,4 +69,19 @@ y_pred = dtree.predict(x_test)
 print("Accuracy:", metrics.accuracy_score( y_test, y_pred))
 
 
-# https://www.myexperiment.org/workflows/4987/versions/1.html
+# Feature importance
+importance = model.feature_importances_
+
+for feature, importance_level in zip(columns_to_be_used_as_input, importance):
+    print(f"Feature: {feature}, Importance: {importance_level}")
+
+
+# plot feature importance
+fig, ax = plt.subplots()
+plt.bar(x=[x for x in range(len(importance))], height=importance)
+ax.set_xticks(np.arange(len(columns_to_be_used_as_input)))
+ax.set_xticklabels(columns_to_be_used_as_input, rotation=45, rotation_mode='anchor', ha="right")
+plt.title("Feature Importance")
+plt.xlabel("Feature")
+plt.ylabel("Importance")
+plt.show()
