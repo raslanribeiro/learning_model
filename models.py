@@ -76,7 +76,6 @@ for feature, importance_level in zip(columns_to_be_used_as_input, importance):
     print(f"Feature: {feature}, Importance: {importance_level}")
 
 
-# plot feature importance
 fig, ax = plt.subplots()
 plt.bar(x=[x for x in range(len(importance))], height=importance)
 ax.set_xticks(np.arange(len(columns_to_be_used_as_input)))
@@ -84,4 +83,11 @@ ax.set_xticklabels(columns_to_be_used_as_input, rotation=45, rotation_mode='anch
 plt.title("Feature Importance")
 plt.xlabel("Feature")
 plt.ylabel("Importance")
+plt.show()
+
+#Confusion matrix
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+disp.plot()
 plt.show()
