@@ -49,7 +49,10 @@ df['runtime_range'] =   np.where(df['runtime'] <= 300, '0 to 300',
                         np.where(df['runtime'] <= 600, '300 to 600',
                         np.where(df['runtime'] <= 1200, '600 to 1200', 
                         np.where(df['runtime'] <= 2400, '1200 to 2400', 
-                        np.where(df['runtime'] <= 4800, '2400 to 4800', '> 4800')))))
+                        np.where(df['runtime'] <= 2400, '2400 to 4800', 
+                        np.where(df['runtime'] <= 2400, '4800 to 9600', 
+                        np.where(df['runtime'] <= 2400, '9600 to 19200', 
+                        np.where(df['runtime'] <= 4800, '19200 to 38400', '> 38400'))))))))
 
 # Split data to test again
 y = df['runtime_range']
