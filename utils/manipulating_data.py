@@ -27,7 +27,7 @@ def get_cleaned_data(columns_to_be_used_as_input, column_to_be_used_as_output):
 
     # INPUT DATA
     executions = pd.read_csv("data/input/query_executions.csv",thousands=',')
-    operations = pd.read_csv("data/input/query _operations.csv", thousands=',')
+    operations = pd.read_csv("data/input/query_operations.csv", thousands=',')
     instances = pd.read_csv("data/input/query_instances.csv", thousands=',')
 
     # QUERY
