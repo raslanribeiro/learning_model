@@ -11,12 +11,9 @@ from sklearn import metrics
 
 columns_to_be_used_as_input = columns_to_be_used_as_input()
 column_to_be_used_as_output = column_to_be_used_as_output()
-
 df = get_cleaned_data(columns_to_be_used_as_input, column_to_be_used_as_output)
-
 x = df[columns_to_be_used_as_input]
 y = df[column_to_be_used_as_output]
-
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
 
 # Linear regression
@@ -80,8 +77,8 @@ plt.show()
 
 #Confusion matrix
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-model = confusion_matrix(y_test, y_pred, labels=model.classes_)
-disp = ConfusionMatrixDisplay(confusion_matrix=model, display_labels=model.classes_)
+cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
 disp.plot()
 plt.show()
 
