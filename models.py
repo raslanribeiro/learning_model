@@ -1,11 +1,10 @@
 from utils.manipulating_data import get_cleaned_data, columns_to_be_used_as_input, column_to_be_used_as_output
-from utils.model_preformance import print_model_performance
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestRegressor
 from sklearn import tree
-from utils.functions import mape
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import metrics
@@ -18,8 +17,6 @@ df = get_cleaned_data(columns_to_be_used_as_input, column_to_be_used_as_output)
 x = df[columns_to_be_used_as_input]
 y = df[column_to_be_used_as_output]
 
-
-# Split data to test
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
 
 # Linear regression
@@ -27,8 +24,8 @@ print("LINEAR MODEL")
 model = LinearRegression()
 model.fit(x_train, y_train.values.ravel())
 y_pred = model.predict(x_test)
-print_model_performance(model, y_pred, y_test)
-print(f"MAPE: {mape(y_test, y_pred)}")
+print("Accuracy: ", metrics.accuracy_score(y_test, np.round(y_pred)))
+print("F1 score: ", metrics.f1_score(y_test, np.round(y_pred), average="micro"))
 
 print("\n------------------------------------\n")
 
@@ -37,36 +34,33 @@ print("LOGISTIC MODEL")
 model = LogisticRegression()
 model.fit(x_train, y_train.values.ravel())
 y_pred = model.predict(x_test)
-print_model_performance(model, y_pred, y_test)
-print(f"MAPE: {mape(y_test, y_pred)}")
+print("Accuracy: ", metrics.accuracy_score(y_test, y_pred))
+print("F1 score: ", metrics.f1_score(y_test, np.round(y_pred), average="micro"))
+
+print("\n------------------------------------\n")
+
+# Random forest
+model = RandomForestRegressor(random_state=42)
+model.fit(x_train, y_train)
+y_pred = model.predict(x_test)
+print("Accuracy: ", metrics.accuracy_score(y_test, np.round(y_pred)))
+print("F1 score: ", metrics.f1_score(y_test, np.round(y_pred), average="micro"))
+
 
 print("\n------------------------------------\n")
 
 # Decision tree
 print("DECISION TREE")
-# Add column
-df['runtime_range'] =   np.where(df['runtime'] <= 30, '0 to 30', #0 a 30s
-                        np.where(df['runtime'] <= 300, '30 to 300', #30s to 5m
-                        np.where(df['runtime'] <= 600, '300 to 600', #5m to 10m
-                        np.where(df['runtime'] <= 1800, '600 to 1800', #10m to 30m
-                        np.where(df['runtime'] <= 3600, '1800 to 3600', #30m to 60m
-                        np.where(df['runtime'] <= 7200, '3600 to 7200', #60m to 2h
-                        np.where(df['runtime'] <= 14400, '7200 to 14400', '> 14400'))))))) #2h to 4h
-
-# Split data to test again
-y = df['runtime_range']
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
-
 model = DecisionTreeClassifier(random_state=0)
-dtree = model.fit(x_train, y_train.values.ravel())
-
-plt.figure(figsize=(12,12))
-tree.plot_tree(dtree, fontsize=10, feature_names=columns_to_be_used_as_input, class_names=df['runtime_range'], filled=True, proportion=True)
-plt.show()
-
-y_pred = dtree.predict(x_test)
+model.fit(x_train, y_train)
+y_pred = model.predict(x_test)
 print("Accuracy:", metrics.accuracy_score( y_test, y_pred))
+print("F1 score: ", metrics.f1_score(y_test, y_pred, average="micro"))
 
+# Graph
+# plt.figure(figsize=(12,12))
+# tree.plot_tree(model, fontsize=10, feature_names=columns_to_be_used_as_input, class_names=df['runtime_range'], filled=True, proportion=True)
+# plt.show()
 
 # Feature importance
 importance = model.feature_importances_
@@ -86,8 +80,8 @@ plt.show()
 
 #Confusion matrix
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
-disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+model = confusion_matrix(y_test, y_pred, labels=model.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=model, display_labels=model.classes_)
 disp.plot()
 plt.show()
 
