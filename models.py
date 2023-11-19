@@ -55,7 +55,6 @@ importance = model.feature_importances_
 for feature, importance_level in zip(columns_to_be_used_as_input, importance):
     print(f"Feature: {feature}, Importance: {importance_level}")
 
-
 fig, ax = plt.subplots()
 plt.bar(x=[x for x in range(len(importance))], height=importance)
 ax.set_xticks(np.arange(len(columns_to_be_used_as_input)))
@@ -80,14 +79,11 @@ from sklearn.decomposition import PCA #used to reduce dimension
 import pandas as pd
 
 x_norm = preprocessing.normalize(x)
-
 model = KMeans(n_clusters = 6, random_state = 0, n_init='auto').fit(x_norm)
-
 pca = PCA(n_components=2) 
 df_2d = pca.fit_transform(x_norm)
 df_new = pd.DataFrame(df_2d, columns=['PC1', 'PC2'])
 df_new['Cluster'] = model.labels_
-
 wcss = []
 
 k_range = range(1, 11)
