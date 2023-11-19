@@ -22,7 +22,7 @@ model = LinearRegression()
 model.fit(x_train, y_train.values.ravel())
 y_pred = model.predict(x_test)
 print("Accuracy: ", metrics.accuracy_score(y_test, np.round(y_pred)))
-print("F1 score: ", metrics.f1_score(y_test, np.round(y_pred), average="micro"))
+print("F1 score: ", metrics.f1_score(y_test, np.round(y_pred), average="weighted"))
 
 print("\n------------------------------------\n")
 
@@ -32,7 +32,7 @@ model = LogisticRegression()
 model.fit(x_train, y_train.values.ravel())
 y_pred = model.predict(x_test)
 print("Accuracy: ", metrics.accuracy_score(y_test, y_pred))
-print("F1 score: ", metrics.f1_score(y_test, np.round(y_pred), average="micro"))
+print("F1 score: ", metrics.f1_score(y_test, np.round(y_pred), average="weighted"))
 
 print("\n------------------------------------\n")
 
@@ -41,7 +41,7 @@ model = RandomForestRegressor(random_state=42)
 model.fit(x_train, y_train)
 y_pred = model.predict(x_test)
 print("Accuracy: ", metrics.accuracy_score(y_test, np.round(y_pred)))
-print("F1 score: ", metrics.f1_score(y_test, np.round(y_pred), average="micro"))
+print("F1 score: ", metrics.f1_score(y_test, np.round(y_pred), average="weighted"))
 
 
 print("\n------------------------------------\n")
@@ -52,7 +52,7 @@ model = DecisionTreeClassifier(random_state=0)
 model.fit(x_train, y_train)
 y_pred = model.predict(x_test)
 print("Accuracy:", metrics.accuracy_score( y_test, y_pred))
-print("F1 score: ", metrics.f1_score(y_test, y_pred, average="micro"))
+print("F1 score: ", metrics.f1_score(y_test, y_pred, average="weighted"))
 
 # Graph
 # plt.figure(figsize=(12,12))
