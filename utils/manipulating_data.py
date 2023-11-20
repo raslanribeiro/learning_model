@@ -8,16 +8,7 @@ def columns_to_be_used_as_input():
 def column_to_be_used_as_output():
     return ["runtime_range"]
 
-def get_cleaned_data(columns_to_be_used_as_input, column_to_be_used_as_output):
-
-    # INPUT DATA
-    executions = pd.read_csv("data/input/query_executions.csv",thousands=',')
-    operations = pd.read_csv("data/input/query_operations.csv", thousands=',')
-    instances = pd.read_csv("data/input/query_instances.csv", thousands=',')
-
-    # QUERY
-    df = executions.merge(instances, left_on='worker_type', right_on='instance_type', how="left").merge(operations, on='query_name', how="left")
-
+def get_cleaned_data(df, columns_to_be_used_as_input, column_to_be_used_as_output):
     df['runtime_range'] = np.where(df['runtime'] <= 30, '0 to 30', #0 a 30s
                         np.where(df['runtime'] <= 300, '30 to 300', #30s to 5m
                         np.where(df['runtime'] <= 600, '300 to 600', #5m to 10m

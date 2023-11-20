@@ -1,0 +1,2 @@
+input_rows_quantity,input_columns_quantity,output_columns_quantity,number_of_workers,photon_acceleration,constraint,cte,case_when,inner_join,left_join,right_join,group_by,selectivity_factor,subquery,explode,vcpu,memory_ram_gb,instance_storage_type
+2000000,10,20,5,1,0,0,0,0,0,0,1,0.8,2,0,8,64,1
