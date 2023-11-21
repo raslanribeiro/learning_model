@@ -21,10 +21,10 @@ def calculate_feature_importances(model, columns_to_be_used_as_input):
     plt.show()
 
 
-def calculate_confusion_matrix(model, y_test, y_pred):
+def calculate_confusion_matrix(model, encoder, y_test, y_pred):
     from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
     cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=model.classes_)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=encoder.inverse_transform(model.classes_))
     disp.plot()
     plt.show()
 
