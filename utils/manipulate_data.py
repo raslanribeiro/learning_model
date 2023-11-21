@@ -1,5 +1,3 @@
-import pandas as pd
-from sklearn import preprocessing
 import numpy as np
 
 def columns_to_be_used_as_input():
@@ -8,7 +6,15 @@ def columns_to_be_used_as_input():
 def column_to_be_used_as_output():
     return ["runtime_range"]
 
-def get_cleaned_data(df, columns_to_be_used_as_input, column_to_be_used_as_output):
+def format_data(df):
+    return df.astype({"input_rows_quantity":"int","input_columns_quantity":"int","output_columns_quantity":"int","number_of_workers":"int","constraint":"int","cte":"int","case_when":"int","inner_join":"int","left_join":"int","right_join":"int","group_by":"int","selectivity_factor":"float","subquery":"int", "vcpu":"int", "memory_ram_gb":"int"})
+
+def encode_columns(df, columns_encoders):
+    for value in columns_encoders:
+        df[value.get("column")] = value.get("encoder").fit_transform(df[value.get("column")])
+    return df
+
+def get_cleaned_data(df, columns_encoders, columns_to_be_used_as_input, column_to_be_used_as_output):
     df['runtime_range'] = np.where(df['runtime'] <= 30, '0 to 30', #0 a 30s
                         np.where(df['runtime'] <= 300, '30 to 300', #30s to 5m
                         np.where(df['runtime'] <= 600, '300 to 600', #5m to 10m
@@ -18,14 +24,7 @@ def get_cleaned_data(df, columns_to_be_used_as_input, column_to_be_used_as_outpu
                         np.where(df['runtime'] <= 14400, '7200 to 14400', '> 14400'))))))) #2h to 4h
 
     df = df[columns_to_be_used_as_input + column_to_be_used_as_output]
-
-    # FORMAT
-    df = df.astype({"input_rows_quantity":"int","input_columns_quantity":"int","output_columns_quantity":"int","number_of_workers":"int","constraint":"int","cte":"int","case_when":"int","inner_join":"int","left_join":"int","right_join":"int","group_by":"int","selectivity_factor":"float","subquery":"int", "vcpu":"int", "memory_ram_gb":"int"})
-
-
-    le = preprocessing.LabelEncoder()
-    df['instance_storage_type'] = le.fit_transform(df['instance_storage_type'])
-    df['photon_acceleration'] = le.fit_transform(df['photon_acceleration'])
-    df['runtime_range'] = le.fit_transform(df['runtime_range'])
+    df = format_data(df)
+    df = encode_columns(df, columns_encoders)
 
     return df

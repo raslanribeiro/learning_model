@@ -1,5 +1,5 @@
 from pandas.plotting import scatter_matrix
-from utils.manipulating_data import get_cleaned_data
+from utils.manipulate_data import get_cleaned_data
 import matplotlib.pyplot as plt
 
 
