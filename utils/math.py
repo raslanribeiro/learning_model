@@ -15,6 +15,7 @@ def calculate_feature_importances(model, columns_to_be_used_as_input):
     plt.bar(x=[x for x in range(len(importance))], height=importance)
     ax.set_xticks(np.arange(len(columns_to_be_used_as_input)))
     ax.set_xticklabels(columns_to_be_used_as_input, rotation=45, rotation_mode='anchor', ha="right")
+    ax.tick_params(axis='both', which='major', labelsize=15)
     plt.title("Feature Importance")
     plt.xlabel("Feature")
     plt.ylabel("Importance")
