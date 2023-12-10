@@ -7,3 +7,7 @@ Machine learning model development able to predict the efficiency of a query acc
 ## Test
 
 In the file test.py, at section 'TEST', it is possible to try a prediction on a small sample of your choice.
+
+## Environment
+
+Pyhton 3.12
