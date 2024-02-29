@@ -15,19 +15,24 @@ def calculate_feature_importances(model, columns_to_be_used_as_input):
     plt.bar(x=[x for x in range(len(importance))], height=importance)
     ax.set_xticks(np.arange(len(columns_to_be_used_as_input)))
     ax.set_xticklabels(columns_to_be_used_as_input, rotation=45, rotation_mode='anchor', ha="right")
-    ax.tick_params(axis='both', which='major', labelsize=15)
-    plt.title("Feature Importance")
-    plt.xlabel("Feature")
-    plt.ylabel("Importance")
+    ax.tick_params(axis='both', which='major', labelsize=20)
+    # plt.title("Feature Importance")
+    plt.xlabel("Feature", fontsize=15)
+    plt.ylabel("Importance", fontsize=15)
     plt.show()
+    plt.tight_layout()
+    plt.savefig('feature_importance.png')
 
 
 def calculate_confusion_matrix(model, encoder, y_test, y_pred):
     from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
     cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=encoder.inverse_transform(model.classes_))
-    disp.plot()
+    disp.plot(xticks_rotation=45)
+    plt.tight_layout()
     plt.show()
+    plt.savefig('matrix.png')
+    y_test.insert(1, "y_pred", y_pred, True)
 
 
 def clustering(x):
@@ -41,7 +46,7 @@ def clustering(x):
 
     k_range = range(1, 11)
     for k in k_range:
-        kmeans = KMeans(n_clusters=k, random_state=42)
+        kmeans = KMeans(n_clusters=k, random_state=42, n_init='auto')
         kmeans.fit(df_new)
         wcss.append(kmeans.inertia_)
 
