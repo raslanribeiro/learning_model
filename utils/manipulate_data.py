@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 def columns_to_be_used_as_input():
     return ["input_rows_quantity", "input_columns_quantity","output_columns_quantity","number_of_workers", "photon_acceleration", "constraint","cte","case_when","inner_join","left_join","right_join","group_by", "selectivity_factor","subquery", "explode", "vcpu", "memory_ram_gb", "instance_storage_type"]
@@ -45,3 +46,13 @@ def get_cleaned_data(df, columns_encoders, columns_to_be_used_as_input, column_t
     df = encode_columns(df, columns_encoders)
 
     return df
+
+
+def generate_mock_data(df: pd.DataFrame, number_of_rows_to_add: int):
+    df_additional = pd.DataFrame()
+    for column in df.columns:
+        df_additional[column] = np.random.choice(df[column], size=number_of_rows_to_add)
+    
+    final_df = pd.concat([df, df_additional], ignore_index=True)
+
+    return final_df

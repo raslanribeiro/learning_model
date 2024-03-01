@@ -1,6 +1,6 @@
 from utils import models, math
 import pandas as pd
-from utils.manipulate_data import get_cleaned_data, columns_to_be_used_as_input, column_to_be_used_as_output
+from utils.manipulate_data import get_cleaned_data, columns_to_be_used_as_input, column_to_be_used_as_output, generate_mock_data
 from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 import warnings
@@ -23,6 +23,10 @@ def app():
     input_columns = columns_to_be_used_as_input()
     output_columns = column_to_be_used_as_output()
     df = get_cleaned_data(df, columns_encoders, input_columns, output_columns, 6)
+
+    number_of_rows_to_add = 10
+    df = generate_mock_data(df, number_of_rows_to_add)
+
     x = df[input_columns]
     y = df[output_columns]
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=0)
