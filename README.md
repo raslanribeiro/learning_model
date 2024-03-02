@@ -10,4 +10,4 @@ In the file test.py, at section 'TEST', it is possible to try a prediction on a 
 
 ## Environment
 
-Pyhton 3.12
+Pyhton 3.8
