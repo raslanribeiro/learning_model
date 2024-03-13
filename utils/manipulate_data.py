@@ -51,21 +51,12 @@ def get_cleaned_data(df, columns_encoders, columns_to_be_used_as_input, column_t
     return df
 
 
-def generate_mock_data(df: pd.DataFrame, final_number_of_rows: int):
-    number_of_rows_to_add = int(final_number_of_rows) - int(len(df))
+def generate_synthetic_data(df_real: pd.DataFrame, number_of_rows: int):
 
-    if number_of_rows_to_add > 0: 
-        df_additional = pd.DataFrame()
-        for column in df.columns:
-            df_additional[column] = np.random.choice(df[column], size=number_of_rows_to_add)
-        
-        final_df = pd.concat([df, df_additional], ignore_index=True)
-
-        return final_df
+    if number_of_rows > len(df_real):
+        final_number_of_rows = number_of_rows - len(df_real)
     else:
-        return df
-
-def generate_synthetic_data(df_real: pd.DataFrame, final_number_of_rows: int):
+        final_number_of_rows = len(df_real)
 
     metadata = SingleTableMetadata()
     metadata.detect_from_dataframe(data=df_real)
@@ -73,6 +64,6 @@ def generate_synthetic_data(df_real: pd.DataFrame, final_number_of_rows: int):
     synthesizer = GaussianCopulaSynthesizer(metadata, default_distribution="gaussian_kde")
     synthesizer.fit(df_real)
 
-    final_df = synthesizer.sample(num_rows=final_number_of_rows)
+    df_synthetic = synthesizer.sample(num_rows=final_number_of_rows)
 
-    return final_df
+    return df_synthetic
